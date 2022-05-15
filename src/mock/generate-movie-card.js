@@ -8,7 +8,6 @@ const generateMovieCard = ()=>(
       title: 'A Little Pony Without The Carpet',
       alternativeTitle: 'Laziness Who Sold Themselves', //alternative_title
       totalRating: 5.3, //total_rating
-//      poster: 'images/posters/blue-blazes.jpg',
       poster: 'images/posters/the-great-flamarion.jpg',
       ageRating: getRandomInt(0,18), //age_rating
       director: 'Tom Ford',
