@@ -11,7 +11,7 @@ const getShortDescription = (descriptionString)=>{
   return description;
 };
 
-const getTemplate = (movie)=>{
+const getMovieCardTemplate = (movie)=>{
   const {filmInfo, comments} = movie;
   return `<article class="film-card">  <a class="film-card__link">    <h3 class="film-card__title">${filmInfo.title}</h3>
     <p class="film-card__rating">${filmInfo.totalRating}</p>
@@ -38,9 +38,13 @@ export default class MovieCardView {
     this.movieInfo = movie;
   }
 
+  getTemplate(){
+    return getMovieCardTemplate(this.movieInfo);
+  }
+
   getElement() {
     if (!this.element) {
-      this.element = createElement(getTemplate(this.movieInfo));
+      this.element = createElement(this.getTemplate());
     }
     return this.element;
   }

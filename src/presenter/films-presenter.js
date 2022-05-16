@@ -7,6 +7,7 @@ import TopRatedFilmsView from '../view/top-rated-films-view.js';
 import MostCommentedFilmsView from '../view/most-commented-films-view.js';
 import ShowMoreButtonView from '../view/show-more-button-view.js';
 import MoviesModel from '../model/movies-model.js';
+import CommentsModel from '../model/coments-model.js';
 
 export default class FilmsPresenter {
   sectionFilms;

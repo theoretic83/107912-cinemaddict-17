@@ -34,7 +34,7 @@ const getNewCommentDiv = ()=>(`<div class="film-details__new-comment">
 const getMovieCommentsTemplate = (commentsIDs) =>{
   const commentsCount = commentsIDs.length;
   if(commentsCount){
-    
+    const comments = loadComments(commentsIDs);
   }
 
   let commentsSection = `<section class="film-details__comments-wrap">
@@ -42,7 +42,7 @@ const getMovieCommentsTemplate = (commentsIDs) =>{
 
   <ul class="film-details__comments-list"></ul>
   ${getNewCommentDiv()}
-</section>`;
+  </section>`;
 
   return commentsSection;
 };
@@ -140,12 +140,12 @@ export default class MoviePopupView {
   }
 
   getTemplate() {
-    return getMoviePopupTemplate();
+    return getMoviePopupTemplate(this.movieInfo);
   }
 
   getElement() {
     if (!this.element) {
-      this.element = createElement(this.getTemplate(this.movieInfo));
+      this.element = createElement(this.getTemplate());
     }
     return this.element;
   }
