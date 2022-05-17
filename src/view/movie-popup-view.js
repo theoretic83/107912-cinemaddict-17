@@ -50,13 +50,13 @@ const getMovieCommentsTemplate = (commentsIDs) =>{
 const getMoviePopupTemplate = (movie)=>{
   const {filmInfo, comments} = movie;
 
+  const genreWord = `Genre${(filmInfo.genre.length > 1) ? 's': ''}`;
+
   const formatMovieGenres = Array.from(filmInfo.genre)
     .forEach((genre, index, array) => {
       array[index] = `<span class="film-details__genre">${genre}</span>`;
     })
     .join('');
-
-  const genreWord = `Genre${(filmInfo.genre.length > 1) ? 's': ''}`;
 
 
   return `<section class="film-details">

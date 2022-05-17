@@ -1,5 +1,13 @@
 import { getRandomInt } from '../utils.js';
 
+const POSTERS_PATH = ['images/posters/made-for-each-other.png'
+  ,'images/posters/popeye-meets-sinbad.png'
+  ,'images/posters/sagebrush-trail.jpg'
+  ,'images/posters/santa-claus-conquers-the-martians.jpg'
+  ,'images/posters/the-dance-of-life.jpg'
+  ,'images/posters/the-great-flamarion.jpg '
+  ,'images/posters/the-man-with-the-golden-arm.jpg'];
+
 const generateMovieCard = ()=>(
   {
     id: '0',
@@ -8,7 +16,7 @@ const generateMovieCard = ()=>(
       title: 'A Little Pony Without The Carpet',
       alternativeTitle: 'Laziness Who Sold Themselves', //alternative_title
       totalRating: 5.3, //total_rating
-      poster: 'images/posters/the-great-flamarion.jpg',
+      poster: POSTERS_PATH[getRandomInt(0,POSTERS_PATH.length-1)],
       ageRating: getRandomInt(0,18), //age_rating
       director: 'Tom Ford',
       writers: ['Takeshi Kitano'],
