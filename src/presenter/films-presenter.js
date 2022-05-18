@@ -28,12 +28,12 @@ export default class FilmsPresenter {
     render(this.sectionFilmsList, this.sectionFilms.getElement());
     const movieCardsContainer = this.sectionFilmsList.getElement().querySelector('div');
 
-    for(let i=0; i<this.boardMovies.length; i++)
-    {
-      const movieCard = new MovieCardView(this.boardMovies[i]);
+    this.boardMovies.forEach((movie)=>{
+      const movieCard = new MovieCardView(movie);
       render(movieCard, movieCardsContainer);
-      movieCard.element.addEventListener('click', ()=>(this.renderPopupMovieCard(this.boardMovies[i])));
-    }
+      movieCard.element.addEventListener('click', ()=>(this.renderPopupMovieCard(movie)));
+    });
+
     render(new ShowMoreButtonView(), this.sectionFilmsList.getElement());
 
     render(new TopRatedFilmsView(), this.sectionFilms.getElement());
