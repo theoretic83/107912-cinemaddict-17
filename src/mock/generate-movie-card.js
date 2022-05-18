@@ -8,6 +8,17 @@ const POSTERS_PATH = ['images/posters/made-for-each-other.png'
   ,'images/posters/the-great-flamarion.jpg '
   ,'images/posters/the-man-with-the-golden-arm.jpg'];
 
+const filmsDescriptions = String(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                  Cras aliquet varius magna, non porta ligula feugiat eget. 
+                                  Fusce tristique felis at fermentum pharetra. 
+                                  Aliquam id orci ut lectus varius viverra. 
+                                  Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. 
+                                  Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. 
+                                  Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. 
+                                  Sed sed nisi sed augue convallis suscipit in sed felis. 
+                                  Aliquam erat volutpat. 
+                                  Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`).split('\n') ;
+
 const generateMovieCard = ()=>(
   {
     id: '0',
@@ -27,7 +38,7 @@ const generateMovieCard = ()=>(
       },
       runtime: 77,
       genre: ['Comedy'],
-      description: 'Oscar-winning film, a war drama about two young people, from the creators of timeless classic Nu, Pogodi! and Alice in Wonderland, with the best fight scenes since Bruce Lee.'
+      description: filmsDescriptions[getRandomInt(0,filmsDescriptions.length-1)]
     },
     userDetails: { //user_details
       watchlist: false,
