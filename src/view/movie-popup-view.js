@@ -33,11 +33,12 @@ const getNewCommentDiv = ()=>(`<div class="film-details__new-comment">
 
 const getMovieCommentsTemplate = (commentsIDs) =>{
   const commentsCount = commentsIDs.length;
+  /*
   if(commentsCount){
     const comments = loadComments(commentsIDs);
   }
-
-  let commentsSection = `<section class="film-details__comments-wrap">
+  */
+  const commentsSection = `<section class="film-details__comments-wrap">
   <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${commentsCount}</span></h3>
 
   <ul class="film-details__comments-list"></ul>
@@ -52,11 +53,7 @@ const getMoviePopupTemplate = (movie)=>{
 
   const genreWord = `Genre${(filmInfo.genre.length > 1) ? 's': ''}`;
 
-  const formatMovieGenres = Array.from(filmInfo.genre)
-    .forEach((genre, index, array) => {
-      array[index] = `<span class="film-details__genre">${genre}</span>`;
-    })
-    .join('');
+  const formatGenres = filmInfo.genre.map((genre, index, array) => (array[index] = `<span class="film-details__genre">${genre}</span>`)).join('');
 
 
   return `<section class="film-details">
@@ -111,7 +108,7 @@ const getMoviePopupTemplate = (movie)=>{
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">${genreWord}</td>
-              <td class="film-details__cell">${formatMovieGenres}</td>
+              <td class="film-details__cell">${formatGenres}</td>
             </tr>
           </tbody></table>
 

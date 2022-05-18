@@ -6,8 +6,9 @@ import MovieCardView from '../view/movie-card-view.js';
 import TopRatedFilmsView from '../view/top-rated-films-view.js';
 import MostCommentedFilmsView from '../view/most-commented-films-view.js';
 import ShowMoreButtonView from '../view/show-more-button-view.js';
+import MoviePopupView from '../view/movie-popup-view.js';
 import MoviesModel from '../model/movies-model.js';
-import CommentsModel from '../model/coments-model.js';
+
 
 export default class FilmsPresenter {
   sectionFilms;
@@ -29,12 +30,19 @@ export default class FilmsPresenter {
 
     for(let i=0; i<this.boardMovies.length; i++)
     {
-      render(new MovieCardView(this.boardMovies[i]), movieCardsContainer);
+      const movieCard = new MovieCardView(this.boardMovies[i]);
+      render(movieCard, movieCardsContainer);
+      movieCard.element.addEventListener('click', ()=>(this.renderPopupMovieCard(this.boardMovies[i])));
     }
     render(new ShowMoreButtonView(), this.sectionFilmsList.getElement());
 
     render(new TopRatedFilmsView(), this.sectionFilms.getElement());
     render(new MostCommentedFilmsView(), this.sectionFilms.getElement());
 
+  };
+
+  renderPopupMovieCard = (movie) => {
+    const moviePopupElement = new MoviePopupView(movie);
+    render(moviePopupElement, document.body);
   };
 }
