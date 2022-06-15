@@ -1,5 +1,5 @@
 import {createElement} from '../render.js';
-import {humanizeDate, convertMinutesToHours} from '../utils.js';
+import {humanizeDate, convertMinutesToHours, pressEscapeHandler} from '../utils.js';
 
 const getNewCommentDiv = ()=>(`<div class="film-details__new-comment">
 <div class="film-details__add-emoji-label"></div>
@@ -131,7 +131,7 @@ const getMoviePopupTemplate = (movie)=>{
 };
 
 export default class MoviePopupView {
-
+  closeButton;
   constructor (movie){
     this.movieInfo = movie;
   }
@@ -143,6 +143,18 @@ export default class MoviePopupView {
   getElement() {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
+      this.closeButton = this.element.querySelector('.film-details__close-btn');
+
+      document.body.classList.add('hide-overflow');
+      document.body.addEventListener('keydown', function onBobyPressEscape(evt){
+        pressEscapeHandler(evt,()=>this.closeButton.click());
+        document.body.removeEventListener('keydown', onBobyPressEscape);
+      });
+
+      this.closeButton.addEventListener('click',()=>{
+        this.element.remove();
+        document.body.classList.remove('hide-overflow');
+      },{once:true});
     }
     return this.element;
   }
