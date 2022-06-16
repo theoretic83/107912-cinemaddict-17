@@ -131,7 +131,7 @@ const getMoviePopupTemplate = (movie)=>{
 };
 
 export default class MoviePopupView {
-  closeButton;
+  #closeButton;
   constructor (movie){
     this.movieInfo = movie;
   }
@@ -140,20 +140,30 @@ export default class MoviePopupView {
     return getMoviePopupTemplate(this.movieInfo);
   }
 
+  onBobyPressEscape() {
+//    this.closeButton = this.element.querySelector('.film-details__close-btn');
+    console.log(MoviePopupView.closeButton);
+//    pressEscapeHandler(evt,()=>{this.closeButton.click();});
+//    document.body.removeEventListener('keydown', this.onBobyPressEscape(evt));
+  }
+
+  get closeButton() {return this.#closeButton;}
+  set closeButton(closeButton) {this.#closeButton = closeButton;}
+
   getElement() {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
       this.closeButton = this.element.querySelector('.film-details__close-btn');
+      console.log(this.closeButton instanceof HTMLElement);
+
 
       document.body.classList.add('hide-overflow');
-      document.body.addEventListener('keydown', function onBobyPressEscape(evt){
-        pressEscapeHandler(evt,()=>this.closeButton.click());
-        document.body.removeEventListener('keydown', onBobyPressEscape);
-      });
+      document.body.addEventListener('keydown', this.onBobyPressEscape);
 
       this.closeButton.addEventListener('click',()=>{
         this.element.remove();
         document.body.classList.remove('hide-overflow');
+        document.body.removeEventListener('keydown', this.onBobyPressEscape);
       },{once:true});
     }
     return this.element;
