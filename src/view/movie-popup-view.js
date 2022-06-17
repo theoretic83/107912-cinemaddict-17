@@ -143,11 +143,28 @@ export default class MoviePopupView {
   getElement() {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
+
+      document.body.addEventListener('keydown', onPressEscape);
+      document.body.classList.add('hide-overflow');
+
+      this.element.querySelector('.film-details__close-btn').addEventListener('click',()=>{
+        document.body.removeEventListener('keydown', onPressEscape);
+        document.body.classList.remove('hide-overflow');
+        this.element.remove();
+      },{once:true});
     }
     return this.element;
   }
 
   removeElement(){
     this.element = null;
+  }
+}
+
+function onPressEscape(evt) {
+  const closeButton = document.querySelector('.film-details__close-btn');
+  if(evt.key === 'Escape')
+  {
+    closeButton.click();
   }
 }

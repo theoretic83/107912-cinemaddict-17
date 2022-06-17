@@ -31,7 +31,7 @@ export default class FilmsPresenter {
     this.boardMovies.forEach((movie)=>{
       const movieCard = new MovieCardView(movie);
       render(movieCard, movieCardsContainer);
-      movieCard.element.addEventListener('click', ()=>(this.renderPopupMovieCard(movie)));
+      movieCard.element.addEventListener('click', ()=>this.renderPopupMovieCard(movie));
     });
 
     render(new ShowMoreButtonView(), this.sectionFilmsList.getElement());
