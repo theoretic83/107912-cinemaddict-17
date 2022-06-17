@@ -14,11 +14,4 @@ const convertMinutesToHours = (minutes) => {
   return `${(minutes-restMinutes)/60}h ${restMinutes}m`;
 };
 
-const pressEscapeHandler = (evt, cb)=>{
-  if(evt.key === 'Escape')
-  {
-    cb();
-  }
-};
-
-export {getRandomInt, getYearFromDate, convertMinutesToHours, humanizeDate, pressEscapeHandler};
+export {getRandomInt, getYearFromDate, convertMinutesToHours, humanizeDate};
