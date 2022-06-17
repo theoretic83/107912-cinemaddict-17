@@ -1,5 +1,5 @@
 import {createElement} from '../render.js';
-import {humanizeDate, convertMinutesToHours, pressEscapeHandler} from '../utils.js';
+import {humanizeDate, convertMinutesToHours} from '../utils.js';
 
 const getNewCommentDiv = ()=>(`<div class="film-details__new-comment">
 <div class="film-details__add-emoji-label"></div>
