@@ -15,6 +15,7 @@ export default class FilmsPresenter {
   sectionFilmsList;
   moviesModel;
   boardMovies;
+  moviePopupElement;
 
   constructor (){
     this.sectionFilms = new SectionFilmsView();
@@ -26,13 +27,9 @@ export default class FilmsPresenter {
   init = (mainElement) => {
     render(this.sectionFilms, mainElement);
     render(this.sectionFilmsList, this.sectionFilms.getElement());
-    const movieCardsContainer = this.sectionFilmsList.getElement().querySelector('div');
 
-    this.boardMovies.forEach((movie)=>{
-      const movieCard = new MovieCardView(movie);
-      render(movieCard, movieCardsContainer);
-      movieCard.element.addEventListener('click', ()=>this.renderPopupMovieCard(movie));
-    });
+    this.boardMovies.forEach(
+      (movie)=>this.renderMovieCard(movie));
 
     render(new ShowMoreButtonView(), this.sectionFilmsList.getElement());
 
@@ -41,8 +38,18 @@ export default class FilmsPresenter {
 
   };
 
+  renderMovieCard = (movie) => {
+    const movieCardsContainer = this.sectionFilmsList.getElement().querySelector('div');
+    const movieCard = new MovieCardView(movie);
+    render(movieCard, movieCardsContainer);
+    movieCard.element.addEventListener('click', ()=>this.renderPopupMovieCard(movie));
+  };
+
   renderPopupMovieCard = (movie) => {
-    const moviePopupElement = new MoviePopupView(movie);
-    render(moviePopupElement, document.body);
+    if(!this.moviePopupElement ?? !this.moviePopupElement.isNullElement())
+    {
+      this.moviePopupElement = new MoviePopupView(movie);
+      render(this.moviePopupElement, document.body);
+    }
   };
 }

@@ -131,6 +131,7 @@ const getMoviePopupTemplate = (movie)=>{
 };
 
 export default class MoviePopupView {
+  #element;
 
   constructor (movie){
     this.movieInfo = movie;
@@ -141,30 +142,36 @@ export default class MoviePopupView {
   }
 
   getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+    if (!this.#element) {
+      this.#element = createElement(this.getTemplate());
 
       document.body.addEventListener('keydown', onPressEscape);
       document.body.classList.add('hide-overflow');
 
-      this.element.querySelector('.film-details__close-btn').addEventListener('click',()=>{
+      this.#element.querySelector('.film-details__close-btn').addEventListener('click',()=>{
         document.body.removeEventListener('keydown', onPressEscape);
         document.body.classList.remove('hide-overflow');
-        this.element.remove();
+        this.removeElement();
       },{once:true});
     }
-    return this.element;
+    return this.#element;
   }
 
   removeElement(){
-    this.element = null;
+    this.#element.remove();
+    this.#element = null;
+  }
+
+  isNullElement(){
+    return this.#element;
   }
 }
 
 function onPressEscape(evt) {
-  const closeButton = document.querySelector('.film-details__close-btn');
-  if(evt.key === 'Escape')
+  if(evt.key === 'Escape' || evt.key === 'Esc')
   {
+    evt.preventDefault();
+    const closeButton = document.querySelector('.film-details__close-btn');
     closeButton.click();
   }
 }
