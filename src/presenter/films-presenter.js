@@ -46,7 +46,7 @@ export default class FilmsPresenter {
   };
 
   renderPopupMovieCard = (movie) => {
-    if(!this.moviePopupElement ?? !this.moviePopupElement.isNullElement())
+    if(!this.moviePopupElement || this.moviePopupElement.isNullElement())
     {
       this.moviePopupElement = new MoviePopupView(movie);
       render(this.moviePopupElement, document.body);

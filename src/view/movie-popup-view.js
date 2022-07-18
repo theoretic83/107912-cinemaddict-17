@@ -163,7 +163,7 @@ export default class MoviePopupView {
   }
 
   isNullElement(){
-    return this.#element;
+    return this.#element === null;
   }
 }
 
